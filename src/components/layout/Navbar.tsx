@@ -1,0 +1,126 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
+export function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isActive = (path: string) => pathname === path;
+
+  return (
+    <>
+      {/* Fluid Island Navbar */}
+      <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] transition-all duration-700 ease-[var(--ease-spring)] w-[calc(100%-2rem)] max-w-5xl rounded-[2rem] ${scrolled ? 'bg-white/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-black/5 py-3' : 'bg-transparent py-3'}`}>
+        <div className="px-6 md:px-8 flex justify-between items-center w-full">
+          {/* Logo */}
+          <Link href="/" className="flex items-center overflow-visible pl-2 md:pl-6">
+            <Image
+              src="/logo.png"
+              alt="Galcare Logo"
+              width={400}
+              height={150}
+              className="h-10 md:h-12 w-auto object-contain flex-shrink-0 scale-[2] md:scale-[2] origin-left"
+              priority
+            />
+          </Link>
+
+          {/* Desktop Links */}
+          <div className="hidden md:flex gap-8 items-center">
+            <Link
+              href="/categories/third-party-manufacturing"
+              className={`text-sm font-semibold transition-colors duration-300 ${isActive('/categories/third-party-manufacturing') ? 'text-[var(--color-primary)]' : 'text-gray-500 hover:text-[var(--color-primary)]'}`}
+            >
+              Manufacturing
+            </Link>
+            <Link
+              href="/categories/dermatology"
+              className={`text-sm font-semibold transition-colors duration-300 ${isActive('/categories/dermatology') ? 'text-[var(--color-primary)]' : 'text-gray-500 hover:text-[var(--color-primary)]'}`}
+            >
+              Dermatology
+            </Link>
+            <Link
+              href="/categories/neuropsychiatric"
+              className={`text-sm font-semibold transition-colors duration-300 ${isActive('/categories/neuropsychiatric') ? 'text-[var(--color-primary)]' : 'text-gray-500 hover:text-[var(--color-primary)]'}`}
+            >
+              Neuro
+            </Link>
+            <Link
+              href="/about"
+              className={`text-sm font-semibold transition-colors duration-300 ${isActive('/about') ? 'text-[var(--color-primary)]' : 'text-gray-500 hover:text-[var(--color-primary)]'}`}
+            >
+              Our Story
+            </Link>
+          </div>
+
+          {/* Contact Button (Desktop) */}
+          <div className="hidden md:block">
+            <Link href="/contact" className="haptic-btn group flex items-center bg-[var(--color-primary)] text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:shadow-lg">
+              Contact
+              <span className="btn-nested-icon ml-3 w-6 h-6 bg-white/20">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </Link>
+          </div>
+
+          {/* Hamburger (Mobile) */}
+          <button
+            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-full bg-gray-50 text-[var(--color-primary)] haptic-btn z-[110]"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <span className="sr-only">Open main menu</span>
+            <div className="w-5 flex flex-col items-end gap-1.5 transition-all duration-300 ease-[var(--ease-spring)]">
+              <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ease-[var(--ease-spring)] ${mobileMenuOpen ? 'w-5 rotate-45 translate-y-2' : 'w-5'}`} />
+              <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ease-[var(--ease-spring)] ${mobileMenuOpen ? 'w-0 opacity-0' : 'w-4'}`} />
+              <span className={`h-0.5 bg-current rounded-full transition-all duration-300 ease-[var(--ease-spring)] ${mobileMenuOpen ? 'w-5 -rotate-45 -translate-y-2' : 'w-3'}`} />
+            </div>
+          </button>
+        </div>
+      </nav>
+
+      {/* Fullscreen Mobile Menu Overlay */}
+      <div
+        className={`fixed inset-0 z-[90] bg-white/95 backdrop-blur-3xl transition-opacity duration-500 ease-[var(--ease-spring)] flex flex-col justify-center px-8 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      >
+        <div className="flex flex-col gap-6 items-start mt-20">
+          {[
+            { label: 'Home', path: '/' },
+            { label: 'Manufacturing', path: '/categories/third-party-manufacturing' },
+            { label: 'Dermatology', path: '/categories/dermatology' },
+            { label: 'Neuropsychiatric', path: '/categories/neuropsychiatric' },
+            { label: 'Our Story', path: '/about' },
+            { label: 'Contact', path: '/contact' },
+          ].map((item, i) => (
+            <Link
+              key={item.label}
+              href={item.path}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-4xl font-normal text-[var(--color-primary)] transition-all duration-500 ease-[var(--ease-spring)] hover:text-[var(--color-accent)]"
+              style={{
+                transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(2rem)',
+                opacity: mobileMenuOpen ? 1 : 0,
+                transitionDelay: `${mobileMenuOpen ? i * 50 + 100 : 0}ms`
+              }}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}

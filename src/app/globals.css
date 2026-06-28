@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
+  /* Colors */
+  --color-primary: #1b498f;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #3a8d38;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #3a8d38; /* Changed from yellow to green */
+  --color-accent-foreground: #ffffff;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Emil's Motion Easing */
+  --ease-ui: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-motion: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.8s var(--ease-ui) both;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-float: float 4s ease-in-out infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Prevent horizontal scroll on mobile due to animations */
+  overflow-x: hidden; 
+}
+
+/* Keyframes */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Haptic Buttons (Emil's Pattern) */
+.haptic-btn {
+  transition: transform 160ms var(--ease-ui), background-color 200ms ease, box-shadow 200ms ease;
+}
+.haptic-btn:active {
+  transform: scale(0.97);
+}
+
+/* Button-in-Button Trailing Icon (High End Visual Design) */
+.btn-nested-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: transform 300ms var(--ease-ui), background-color 200ms ease;
+}
+.group:hover .btn-nested-icon {
+  transform: translateX(4px) translateY(-1px) scale(1.05);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Double Bezel Architecture (Doppelrand) */
+.double-bezel-outer {
+  background-color: rgba(0, 0, 0, 0.03);
+  padding: 0.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.double-bezel-inner {
+  border-radius: calc(2rem - 0.5rem);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 20px 40px -15px rgba(0,0,0,0.05);
+  height: 100%;
+}
+
+/* Soft Ambient Shadows */
+.ambient-shadow {
+  box-shadow: 0 40px 80px -20px rgba(27, 73, 143, 0.08), 0 10px 20px -5px rgba(27, 73, 143, 0.04);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
