@@ -87,8 +87,8 @@ export function DistributionMap() {
                       fill="white" 
                       stroke="var(--color-primary)"
                       strokeWidth="3"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ type: "spring", delay: 0.2 + (i * 0.15) }}
                     />

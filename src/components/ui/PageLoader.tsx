@@ -73,16 +73,16 @@ export function PageLoader({ children }: PageLoaderProps) {
             {/* Animated Icon Mask */}
             <motion.div
               className="relative w-24 h-24 overflow-hidden rounded-2xl shadow-2xl"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              initial={{ clipPath: "inset(0 100% 0 0)" }}
+              animate={{ clipPath: "inset(0 0% 0 0)" }}
+              transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
             >
               <div className="absolute inset-0 bg-gray-100" />
               <motion.div
                 className="absolute inset-0 bg-[var(--color-primary)] origin-bottom"
-                initial={{ scaleY: 0 }}
-                animate={{ scaleY: 1 }}
-                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
               />
               <Image
                 src="/icon.png"
@@ -105,7 +105,7 @@ export function PageLoader({ children }: PageLoaderProps) {
                 className="block text-xl font-bold tracking-[0.3em]"
                 initial={{ y: 20 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
               >
                 <ShinyText 
                   text="Galcare" 

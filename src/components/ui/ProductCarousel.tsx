@@ -41,7 +41,7 @@ export function ProductCarousel() {
           {[...products, ...products, ...products, ...products].map((product, i) => (
             <div
               key={`${product.id}-${i}`}
-              className="flex-shrink-0 w-64 md:w-72 bg-white rounded-3xl p-6 pb-8 shadow-sm border border-gray-100 flex flex-col items-center group-hover:shadow-md transition-shadow duration-300 relative overflow-hidden"
+              className="flex-shrink-0 w-64 md:w-72 bg-white rounded-3xl p-6 pb-8 shadow-sm border border-gray-100 flex flex-col items-center group-hover:shadow-md transition-shadow duration-200 ease-[var(--ease-ui)] relative overflow-hidden"
             >
               <div className="relative w-full h-56 mb-4">
                 <Image
@@ -49,7 +49,7 @@ export function ProductCarousel() {
                   alt={product.name}
                   fill
                   sizes="(max-width: 768px) 256px, 288px"
-                  className="object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-500"
+                  className="object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-200 ease-[var(--ease-ui)]"
                 />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 text-center relative z-10">

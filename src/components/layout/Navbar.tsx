@@ -72,7 +72,7 @@ export function Navbar() {
               <span className={`cursor-pointer text-sm font-semibold transition-colors duration-300 ${pathname.startsWith('/products') ? 'text-[var(--color-primary)]' : 'text-gray-500 hover:text-[var(--color-primary)]'}`}>
                 Products
               </span>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 scale-95 origin-top pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-[opacity,transform] duration-200 ease-[var(--ease-ui)]">
                 <div className="w-48 bg-white border border-gray-100 shadow-xl rounded-2xl p-2 flex flex-col gap-1">
                   <Link href="/products/nuvate-al-gel" className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-[var(--color-primary)] hover:bg-blue-50 rounded-xl transition-colors">
                     Nuvate AL Gel
