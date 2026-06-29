@@ -133,7 +133,7 @@ export function PageLoader({ children }: PageLoaderProps) {
           ease: [0.77, 0, 0.175, 1], // Emil's snappy motion ease
           delay: 0.1
         }}
-        className="w-full bg-white relative z-[150] shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.15)]"
+        className="w-full max-w-[100vw] overflow-x-hidden bg-white relative z-[150] shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.15)]"
       >
         {children}
       </motion.div>

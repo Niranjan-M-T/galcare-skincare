@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="h-full antialiased bg-white scroll-smooth"
+      className="h-full antialiased bg-white scroll-smooth overflow-x-hidden"
     >
       <body className="min-h-full flex flex-col bg-white overflow-x-hidden selection:bg-blue-100 selection:text-[var(--color-primary)]" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
         <PageLoader>

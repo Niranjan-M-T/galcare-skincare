@@ -37,7 +37,7 @@ export function Navbar() {
       <nav className={`fixed top-0 left-1/2 -translate-x-1/2 z-[100] transition-all duration-700 ease-[var(--ease-spring)] w-[calc(100%-2rem)] max-w-5xl rounded-[2rem] ${scrolled ? 'bg-white/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-black/5 py-3' : 'bg-transparent py-3'} ${hidden ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-6 opacity-100'}`}>
         <div className="px-4 md:px-8 flex justify-between items-center w-full">
           {/* Logo */}
-          <Link href="/" className="flex items-center overflow-visible pl-2 md:pl-6">
+          <Link href="/" className="flex items-center overflow-visible pl-2 md:pl-6 md:mr-16 lg:mr-32">
             <Image
               src="/logo.png"
               alt="Galcare Logo"
