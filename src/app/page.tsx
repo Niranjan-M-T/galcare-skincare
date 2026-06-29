@@ -2,6 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { HeroDoodleBack, HeroDoodleFront } from "@/components/ui/HeroDoodles";
+import { ProductCarousel } from "@/components/ui/ProductCarousel";
+import { WhyUsSection } from "@/components/ui/WhyUsSection";
+import { DistributionMap } from "@/components/ui/DistributionMap";
+import { MiniContact } from "@/components/ui/MiniContact";
+import { SectionDoodleOne, SectionDoodleTwo } from "@/components/ui/SectionDoodles";
 
 export default function Home() {
   return (
@@ -95,8 +100,9 @@ export default function Home() {
             <ScrollReveal className="md:col-span-8 md:row-span-2">
               <Link href="/categories/dermatology" className="block w-full h-full group double-bezel-outer transition-transform duration-500 ease-[var(--ease-spring)] hover:-translate-y-2">
                 <div className="double-bezel-inner bg-white relative overflow-hidden flex flex-col justify-end p-8 md:p-12 min-h-[400px]">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-primary)]/5 rounded-bl-full transition-transform duration-700 ease-[var(--ease-spring)] group-hover:scale-110" />
-                  <div className="relative z-10 max-w-md">
+                  <Image src="/dermatology_bg.png" alt="Dermatology" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-cover opacity-80 group-hover:scale-105 transition-all duration-700 ease-[var(--ease-spring)]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
+                  <div className="relative z-10 max-w-md mt-32">
                     <span className="rounded-full px-3 py-1 text-[10px] uppercase tracking-widest font-bold bg-[var(--color-primary)] text-white mb-4 inline-block">Division 01</span>
                     <h3 className="text-3xl md:text-5xl font-light text-[var(--color-primary)] mb-4 tracking-tight">Dermatology</h3>
                     <p className="text-gray-500 font-medium leading-relaxed">Advanced topical formulations and clinical skin care protocols designed for profound aesthetic restoration.</p>
@@ -113,19 +119,18 @@ export default function Home() {
             <ScrollReveal className="md:col-span-4 md:row-span-2" delay={100}>
               <Link href="/categories/neuropsychiatric" className="block w-full h-full group double-bezel-outer transition-transform duration-500 ease-[var(--ease-spring)] hover:-translate-y-2">
                 <div className="double-bezel-inner bg-white relative overflow-hidden flex flex-col justify-between p-8 md:p-10 h-full min-h-[400px]">
-                  <div className="flex justify-between items-start w-full">
+                  <Image src="/neuro_bg.png" alt="Neuropsychiatric" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover opacity-60 group-hover:scale-105 transition-all duration-700 ease-[var(--ease-spring)]" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-transparent to-white" />
+                  
+                  <div className="relative z-10 flex justify-between items-start w-full">
                     <span className="rounded-full px-3 py-1 text-[10px] uppercase tracking-widest font-bold bg-gray-100 text-gray-600">Division 02</span>
-                    <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 transition-colors duration-300 group-hover:bg-[var(--color-accent)] group-hover:text-[var(--color-primary)] group-hover:border-[var(--color-accent)]">
+                    <div className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 transition-colors duration-300 group-hover:bg-[var(--color-primary)] group-hover:text-white group-hover:border-[var(--color-primary)]">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                     </div>
                   </div>
-                  <div className="mt-auto relative z-10 pt-20">
+                  <div className="mt-auto relative z-10 pt-48">
                     <h3 className="text-3xl font-light text-[var(--color-primary)] mb-4 tracking-tight leading-tight">Neuropsychiatric<br/>Solutions</h3>
                     <p className="text-gray-500 text-sm font-medium leading-relaxed">Pioneering molecular support systems for cognitive wellness.</p>
-                  </div>
-                  {/* Abstract Graphic */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-[var(--color-accent)]/20 rounded-full flex items-center justify-center opacity-50">
-                    <div className="w-32 h-32 border border-[var(--color-primary)]/10 rounded-full transition-transform duration-1000 ease-[var(--ease-spring)] group-hover:scale-110" />
                   </div>
                 </div>
               </Link>
@@ -135,6 +140,7 @@ export default function Home() {
             <ScrollReveal className="md:col-span-12" delay={200}>
               <Link href="/categories/third-party-manufacturing" className="block w-full group double-bezel-outer transition-transform duration-500 ease-[var(--ease-spring)] hover:-translate-y-2">
                 <div className="double-bezel-inner relative overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 md:p-12 gap-8 bg-[var(--color-primary)] group-hover:bg-[#153a73] transition-colors duration-500">
+                  <Image src="/manufacturing_bg.png" alt="Manufacturing" fill sizes="100vw" className="object-cover opacity-30 mix-blend-overlay group-hover:scale-105 transition-all duration-700 ease-[var(--ease-spring)]" />
                   <div className="relative z-10 max-w-xl text-white">
                     <span className="rounded-full px-3 py-1 text-[10px] uppercase tracking-widest font-bold bg-white/10 mb-4 inline-block">Partner Ecosystem</span>
                     <h3 className="text-3xl md:text-4xl font-light mb-4 tracking-tight text-white">3rd Party Manufacturing</h3>
@@ -153,54 +159,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust & Certifications (Minimalist Structural) */}
-      <section className="py-32 bg-white relative z-10">
-        <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 border-t border-gray-100 pt-16">
-            
-            <ScrollReveal delay={100}>
-              <div className="flex flex-col gap-4 group">
-                <div className="text-[var(--color-primary)] w-8 h-8 opacity-50 group-hover:opacity-100 transition-opacity">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                </div>
-                <h4 className="font-light text-sm text-[var(--color-primary)] tracking-tight">GMP Certified</h4>
-                <p className="text-xs text-gray-400 font-medium leading-relaxed">Internationally recognized manufacturing facilities.</p>
-              </div>
-            </ScrollReveal>
+      <ProductCarousel />
+      
+      <SectionDoodleOne />
+      <WhyUsSection />
+      
+      <SectionDoodleTwo />
+      <DistributionMap />
+      
+      <MiniContact />
 
-            <ScrollReveal delay={200}>
-              <div className="flex flex-col gap-4 group">
-                <div className="text-[var(--color-primary)] w-8 h-8 opacity-50 group-hover:opacity-100 transition-opacity">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg>
-                </div>
-                <h4 className="font-light text-sm text-[var(--color-primary)] tracking-tight">Clinically Validated</h4>
-                <p className="text-xs text-gray-400 font-medium leading-relaxed">Formulations rooted in scientific evidence.</p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={300}>
-              <div className="flex flex-col gap-4 group">
-                <div className="text-[var(--color-primary)] w-8 h-8 opacity-50 group-hover:opacity-100 transition-opacity">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                </div>
-                <h4 className="font-light text-sm text-[var(--color-primary)] tracking-tight">Doctor Formulated</h4>
-                <p className="text-xs text-gray-400 font-medium leading-relaxed">Developed alongside leading medical professionals.</p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={400}>
-              <div className="flex flex-col gap-4 group">
-                <div className="text-[var(--color-primary)] w-8 h-8 opacity-50 group-hover:opacity-100 transition-opacity">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
-                </div>
-                <h4 className="font-light text-sm text-[var(--color-primary)] tracking-tight">WHO Standards</h4>
-                <p className="text-xs text-gray-400 font-medium leading-relaxed">Compliant with global health benchmarks.</p>
-              </div>
-            </ScrollReveal>
-
-          </div>
-        </div>
-      </section>
       </div>
   );
 }

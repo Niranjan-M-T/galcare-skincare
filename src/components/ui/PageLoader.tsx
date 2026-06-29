@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import ShinyText from "./ShinyText";
 
 interface PageLoaderProps {
   children: React.ReactNode;
@@ -10,6 +12,11 @@ interface PageLoaderProps {
 
 export function PageLoader({ children }: PageLoaderProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     // Minimum time to show the premium animation (1.5s)
@@ -94,41 +101,39 @@ export function PageLoader({ children }: PageLoaderProps) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <motion.span
-                className="block text-xs font-bold tracking-[0.3em] uppercase text-[var(--color-primary)]"
+              <motion.div
+                className="block text-xl font-bold tracking-[0.3em]"
                 initial={{ y: 20 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               >
-                Loading...
-              </motion.span>
+                <ShinyText 
+                  text="Galcare" 
+                  speed={2} 
+                  delay={0} 
+                  color="var(--color-primary)" 
+                  shineColor="#5ca2ff" 
+                  spread={120} 
+                  direction="left" 
+                  yoyo={false} 
+                  pauseOnHover={false} 
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* The Glowing Edge Mask Tracker */}
-      <motion.div
-        initial={{ top: 0, y: "100vh" }}
-        animate={!isLoading ? { y: "-10vh", opacity: 0 } : {}}
-        transition={{
-          duration: 1.2,
-          ease: [0.77, 0, 0.175, 1],
-          delay: 0.1
-        }}
-        className="fixed left-0 right-0 h-[10px] bg-[var(--color-primary)] shadow-[0_0_100px_40px_rgba(27,73,143,0.8)] z-[190] pointer-events-none rounded-t-[100%]"
-      />
-
       {/* The Mask-Transitioning Page Content */}
       <motion.div
-        initial={{ clipPath: "inset(100% 0 0 0)" }}
-        animate={!isLoading ? { clipPath: "inset(0% 0 0 0)" } : {}}
+        initial={{ y: "100vh" }}
+        animate={!isLoading ? { y: 0 } : {}}
         transition={{
           duration: 1.2,
           ease: [0.77, 0, 0.175, 1], // Emil's snappy motion ease
           delay: 0.1
         }}
-        className="w-full bg-white relative z-[150]"
+        className="w-full bg-white relative z-[150] shadow-[0_-20px_80px_-20px_rgba(0,0,0,0.15)]"
       >
         {children}
       </motion.div>

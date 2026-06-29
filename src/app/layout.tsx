@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageLoader } from "@/components/ui/PageLoader";
+import GradualBlur from "@/components/ui/GradualBlur";
 
 export const metadata: Metadata = {
   title: "Galcare Pharmaceuticals - High-End Skincare & Manufacturing",
@@ -19,12 +20,13 @@ export default function RootLayout({
       lang="en"
       className="h-full antialiased bg-white scroll-smooth"
     >
-      <body className="min-h-full flex flex-col bg-white selection:bg-[var(--color-accent)] selection:text-[var(--color-primary)]" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
+      <body className="min-h-full flex flex-col bg-white overflow-x-hidden selection:bg-blue-100 selection:text-[var(--color-primary)]" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
         <PageLoader>
           <Navbar />
-          <main className="flex-grow pt-32 overflow-hidden">
+          <main className="flex-grow pt-32 overflow-visible">
             {children}
           </main>
+          <GradualBlur target="page" position="bottom" height="6rem" strength={2} divCount={5} curve="bezier" exponential={true} opacity={1} />
           <Footer />
         </PageLoader>
       </body>
