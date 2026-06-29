@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -9,9 +9,22 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 20);
+      
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setHidden(true); // scrolling down
+      } else if (currentScrollY < lastScrollY.current) {
+        setHidden(false); // scrolling up
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -21,8 +34,8 @@ export function Navbar() {
   return (
     <>
       {/* Fluid Island Navbar */}
-      <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] transition-all duration-700 ease-[var(--ease-spring)] w-[calc(100%-2rem)] max-w-5xl rounded-[2rem] ${scrolled ? 'bg-white/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-black/5 py-3' : 'bg-transparent py-3'}`}>
-        <div className="px-6 md:px-8 flex justify-between items-center w-full">
+      <nav className={`fixed top-0 left-1/2 -translate-x-1/2 z-[100] transition-all duration-700 ease-[var(--ease-spring)] w-[calc(100%-2rem)] max-w-5xl rounded-[2rem] ${scrolled ? 'bg-white/80 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-black/5 py-3' : 'bg-transparent py-3'} ${hidden ? '-translate-y-full opacity-0 pointer-events-none' : 'translate-y-6 opacity-100'}`}>
+        <div className="px-4 md:px-8 flex justify-between items-center w-full">
           {/* Logo */}
           <Link href="/" className="flex items-center overflow-visible pl-2 md:pl-6">
             <Image
@@ -30,7 +43,7 @@ export function Navbar() {
               alt="Galcare Logo"
               width={400}
               height={150}
-              className="h-10 md:h-12 w-auto object-contain flex-shrink-0 scale-[2] md:scale-[2] origin-left"
+              className="h-10 md:h-12 w-auto object-contain flex-shrink-0 md:scale-[1.5] lg:scale-[2] md:origin-left"
               priority
             />
           </Link>

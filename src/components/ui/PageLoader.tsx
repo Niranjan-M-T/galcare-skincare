@@ -60,7 +60,7 @@ export function PageLoader({ children }: PageLoaderProps) {
       {/* The Full Screen Creative Loader */}
       <AnimatePresence>
         {isLoading && (
-          <motion.div
+            <motion.div
             key="loader"
             initial={{ opacity: 1 }}
             exit={{
@@ -68,7 +68,7 @@ export function PageLoader({ children }: PageLoaderProps) {
               y: "-100%",
               transition: { duration: 0.8, ease: [0.77, 0, 0.175, 1] }
             }}
-            className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-white"
+            className="fixed top-0 left-0 w-[100dvw] h-[100dvh] overflow-hidden z-[200] flex flex-col items-center justify-center bg-white"
           >
             {/* Animated Icon Mask */}
             <motion.div
