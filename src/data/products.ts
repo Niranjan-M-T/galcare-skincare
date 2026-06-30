@@ -9,6 +9,12 @@ export interface Product {
   bgColor: string;
   ratings: number;
   reviews: number;
+  price: number;
+  sizes: string[];
+  details: {
+    title: string;
+    content: string;
+  }[];
   benefits: {
     title: string;
     items: {
@@ -44,10 +50,26 @@ export const products: Product[] = [
     category: "Dermatology",
     tagline: "Advanced topical formulations and clinical skin care protocols designed for profound aesthetic restoration.",
     image: "/images/product-1.png",
-    bgImage: "/derma_bg.png",
+    bgImage: "/dermatology_bg.png",
     bgColor: "bg-blue-50/50",
     ratings: 5,
     reviews: 120,
+    price: 45,
+    sizes: ["50 g", "100 g"],
+    details: [
+      {
+        title: "Skin types",
+        content: "Formulated for all skin types, including sensitive and post-procedure skin. Non-comedogenic and hypoallergenic."
+      },
+      {
+        title: "How to use",
+        content: "Apply a thin layer to the affected area twice daily, or as directed by your dermatologist. Gently massage until fully absorbed."
+      },
+      {
+        title: "Ingredients",
+        content: "Purified Water, Glycerin, Niacinamide, Hyaluronic Acid, Centella Asiatica Extract, Ceramides, Dimethicone, Phenoxyethanol."
+      }
+    ],
     benefits: {
       title: "Weightless Hydration",
       items: [
@@ -75,7 +97,7 @@ export const products: Product[] = [
         {
           name: "Snow mushroom extract",
           description: "Used for its hydrating and anti-aging properties. Retains moisture and supports skin barrier.",
-          image: "/images/product-3.png" // Placeholder for compound image
+          image: "/images/product-1.png" // Placeholder for compound image
         }
       ]
     },
@@ -117,6 +139,22 @@ export const products: Product[] = [
     bgColor: "bg-gray-50",
     ratings: 4.8,
     reviews: 85,
+    price: 38,
+    sizes: ["30 ml", "60 ml"],
+    details: [
+      {
+        title: "Skin types",
+        content: "Ideal for dry, compromised, or mature skin in need of intensive barrier repair."
+      },
+      {
+        title: "How to use",
+        content: "Dispense a small amount onto fingertips and gently press into cleansed skin. Use morning and night."
+      },
+      {
+        title: "Ingredients",
+        content: "Aqua, Squalane, Shea Butter, Peptides, Vitamin E, Panthenol, Caprylic/Capric Triglyceride."
+      }
+    ],
     benefits: {
       title: "Cellular Rejuvenation",
       items: [
@@ -144,7 +182,7 @@ export const products: Product[] = [
         {
           name: "Niacinamide (10%)",
           description: "Visibly minimizes enlarged pores, tightens lax pores, improves uneven skin tone.",
-          image: "/images/product-3.png"
+          image: "/images/product-1.png"
         }
       ]
     },

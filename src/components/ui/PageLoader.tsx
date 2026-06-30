@@ -15,7 +15,11 @@ export function PageLoader({ children }: PageLoaderProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // A small delay ensures the new page has mounted before forcing scroll
+    const timer = setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }, 50);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   useEffect(() => {
@@ -73,8 +77,8 @@ export function PageLoader({ children }: PageLoaderProps) {
             {/* Animated Icon Mask */}
             <motion.div
               className="relative w-24 h-24 overflow-hidden rounded-2xl shadow-2xl"
-              initial={{ clipPath: "inset(0 100% 0 0)" }}
-              animate={{ clipPath: "inset(0 0% 0 0)" }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
             >
               <div className="absolute inset-0 bg-gray-100" />

@@ -36,6 +36,7 @@ export function Footer() {
             <h4 className="text-sm font-bold mb-6 text-gray-900">Galcare</h4>
             <ul className="space-y-4">
               <li><Link href="/about" className="text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors font-medium">Our Story</Link></li>
+              <li><Link href="/products" className="text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors font-medium">Products</Link></li>
               <li><Link href="/" className="text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors font-medium">Manufacturing</Link></li>
               <li><Link href="/" className="text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors font-medium">Pricing</Link></li>
               <li><Link href="/contact" className="text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors font-medium">Contact</Link></li>
