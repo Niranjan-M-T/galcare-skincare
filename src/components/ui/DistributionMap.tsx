@@ -5,15 +5,15 @@ import { ScrollReveal } from "./ScrollReveal";
 import Link from "next/link";
 
 const destinations = [
-  { id: "delhi", x: 315, y: 280, label: "DELHI" },
-  { id: "lucknow", x: 430, y: 320, label: "LUCKNOW" },
-  { id: "bhopal", x: 330, y: 430, label: "BHOPAL" },
-  { id: "kolkata", x: 580, y: 440, label: "KOLKATA" },
-  { id: "ahmedabad", x: 220, y: 410, label: "AHMEDABAD" },
-  { id: "mumbai", x: 230, y: 540, label: "MUMBAI" },
-  { id: "hyderabad", x: 340, y: 580, label: "HYDERABAD" },
-  { id: "bangalore", x: 330, y: 700, label: "BANGALORE" },
-  { id: "chennai", x: 400, y: 680, label: "CHENNAI" },
+  { id: "delhi", x: 315, y: 280, label: "DELHI", align: "right" },
+  { id: "lucknow", x: 430, y: 320, label: "LUCKNOW", align: "right" },
+  { id: "bhopal", x: 330, y: 430, label: "BHOPAL", align: "right" },
+  { id: "kolkata", x: 580, y: 440, label: "KOLKATA", align: "right" },
+  { id: "ahmedabad", x: 220, y: 410, label: "AHMEDABAD", align: "left" },
+  { id: "mumbai", x: 230, y: 540, label: "MUMBAI", align: "left" },
+  { id: "hyderabad", x: 340, y: 580, label: "HYDERABAD", align: "right" },
+  { id: "bangalore", x: 330, y: 700, label: "BANGALORE", align: "left" },
+  { id: "chennai", x: 400, y: 680, label: "CHENNAI", align: "right" },
 ];
 
 export function DistributionMap() {
@@ -73,9 +73,11 @@ export function DistributionMap() {
 
               {/* Destination nodes, leader lines, and labels */}
               {destinations.map((dest, i) => {
-                const lineMidX = dest.x + 30;
+                const lineMidX = dest.align === "left" ? dest.x - 30 : dest.x + 30;
                 const lineMidY = dest.y - 30;
-                const lineEndX = dest.x + 80;
+                const lineEndX = dest.align === "left" ? dest.x - 80 : dest.x + 80;
+                const rectX = dest.align === "left" ? lineEndX - 90 : lineEndX;
+                const textX = dest.align === "left" ? lineEndX - 45 : lineEndX + 45;
                 
                 return (
                   <g key={`node-${dest.id}`}>
@@ -113,7 +115,7 @@ export function DistributionMap() {
                       transition={{ duration: 0.4, delay: 0.8 + (i * 0.15) }}
                     >
                       <rect 
-                        x={lineEndX} 
+                        x={rectX} 
                         y={lineMidY - 12} 
                         width="90" 
                         height="24" 
@@ -125,14 +127,15 @@ export function DistributionMap() {
                         filter="url(#glow)"
                       />
                       <text 
-                        x={lineEndX + 45} 
-                        y={lineMidY + 4} 
+                        x={textX} 
+                        y={lineMidY} 
                         fill="white" 
                         fontSize="11" 
                         fontWeight="700" 
                         fontFamily="sans-serif"
                         letterSpacing="1"
                         textAnchor="middle"
+                        dominantBaseline="central"
                       >
                         {dest.label}
                       </text>
@@ -154,7 +157,7 @@ export function DistributionMap() {
                   <animate attributeName="opacity" from="0.8" to="0" dur="2s" repeatCount="indefinite" />
                 </circle>
                 <rect x="315" y="308" width="80" height="24" rx="4" fill="white" fillOpacity="0.95" stroke="var(--color-accent)" strokeWidth="2" filter="url(#glow)"/>
-                <text x="355" y="324" fill="var(--color-accent)" fontSize="12" fontWeight="800" textAnchor="middle" letterSpacing="1">JAIPUR</text>
+                <text x="355" y="320" fill="var(--color-accent)" fontSize="12" fontWeight="800" textAnchor="middle" letterSpacing="1" dominantBaseline="central">JAIPUR</text>
               </motion.g>
             </svg>
           </div>
