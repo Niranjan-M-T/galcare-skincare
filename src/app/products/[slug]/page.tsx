@@ -118,6 +118,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   src={product.bgImage} 
                   alt="Background" 
                   fill 
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover opacity-50 mix-blend-multiply group-hover:scale-105 transition-transform duration-[2s] ease-[var(--ease-out-strong)]" 
                 />
                 <Image 
@@ -125,6 +127,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   alt={product.name}
                   width={350} 
                   height={550} 
+                  style={{ width: "auto", height: "auto" }}
                   className="object-contain relative z-10 drop-shadow-2xl group-hover:-translate-y-2 transition-transform duration-500 ease-[var(--ease-out-strong)]" 
                   priority
                 />
@@ -216,6 +219,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   src={product.bgImage} 
                   alt="Texture" 
                   fill 
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover"
                 />
               </div>
@@ -259,7 +263,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden flex h-[160px] group hover:border-gray-300 transition-colors">
                   <div className="relative w-2/5 h-full shrink-0 border-r border-gray-100">
                     {/* Reusing compound image from data, setting object-cover to match screenshot */}
-                    <Image src={compound.image} alt={compound.name} fill className="object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700 ease-[var(--ease-out-strong)]" />
+                    <Image src={compound.image} alt={compound.name} fill sizes="(max-width: 768px) 100vw, 20vw" className="object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700 ease-[var(--ease-out-strong)]" />
                   </div>
                   <div className="w-3/5 p-6 flex flex-col justify-center">
                     <h3 className="text-[15px] font-semibold text-gray-900 mb-2">{compound.name}</h3>
@@ -291,6 +295,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                   src={product.regimen.image} 
                   alt="Application Regimen" 
                   fill 
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-[var(--ease-out-strong)]" 
                 />
                 <div className="absolute top-1/2 left-[45%] -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white/95 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">

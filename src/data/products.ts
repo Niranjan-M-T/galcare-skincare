@@ -103,7 +103,7 @@ export const products: Product[] = [
     },
     regimen: {
       title: "5 steps hydration regimen",
-      image: "/images/patient_dermatology.png", // Reusing the derma image
+      image: "/dermatology_bg.png", // Reusing the derma image
       steps: [
         {
           title: "Cleansing",
@@ -188,7 +188,7 @@ export const products: Product[] = [
     },
     regimen: {
       title: "Nightly Renewal Process",
-      image: "/images/patient_dermatology.png",
+      image: "/dermatology_bg.png",
       steps: [
         {
           title: "Preparation",
